@@ -1,6 +1,7 @@
 import React from "react";
 import { features } from "../../Data/Data/HomePage";
 import img6 from "../../Data/images/img6.webp"
+import { AnimatedText } from "../AnimatedImage";
 
 export default function Hero2() {
   return (
@@ -15,14 +16,10 @@ export default function Hero2() {
             <span class="text-gray-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider">
               Why choose us
             </span>
-            <h2 class="block w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl">
-              Build a Website That Your Customers Love
-            </h2>
-            <p class="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-gray-400">
-              Our templates allow for maximum customization. No technical skills
+            <AnimatedText text="Build a Website That Your Customers Love" classN="block w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl" />
+            <AnimatedText  text="Our website allow for maximum customization. No technical skills
               required – our intuitive design tools let you get the job done
-              easily.
-            </p>
+              easily." classN="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-gray-400" />
           </div>
 
           <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10  pt-14 sm:grid-cols-2 lg:grid-cols-3">

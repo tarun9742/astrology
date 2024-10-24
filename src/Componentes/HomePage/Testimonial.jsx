@@ -25,7 +25,7 @@ export default function Testimonial() {
                   <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
                   <a href={testimony.link} className="cursor-pointer">
                     <div className="relative p-4 space-y-6 leading-none rounded-lg bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
+                      <div className="lg:flex items-center gap-4">
                         <img
                           src={testimony.image}
                           className="w-12 h-12 bg-center bg-cover border rounded-full"

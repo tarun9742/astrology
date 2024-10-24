@@ -6,8 +6,13 @@ import img10 from "../../Data/images/img10.jpg";
 import borderB from "../../Data/images/border-b.png";
 import Slider from "react-slick";
 import banner1 from "../../Data/images/offer2.png";
-import bg4 from "../../Data/images/bg3.png"
+import bg4 from "../../Data/images/bg3.png";
 import { Link } from "react-router-dom";
+import {
+  AnimatedImage,
+  AnimatedImageOnce,
+  AnimatedText,
+} from "../AnimatedImage";
 
 export default function Hero5() {
   const settings = {
@@ -31,9 +36,10 @@ export default function Hero5() {
                 <span class="block mb-0 text-lg font-semibold text-gray-200 text-primary">
                   Why Choose Us
                 </span>
-                <h2 class=" w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl mb-4 py-2">
-                  Make your customers happy by giving services.
-                </h2>
+                <AnimatedText
+                  text="Make your customers happy by giving services."
+                  classN=" w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl mb-4 py-2"
+                />
                 <p class="  mb-2 mt-6 text-base text-gray-300 dark:text-dark-6">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
@@ -44,7 +50,10 @@ export default function Hero5() {
                   brand. Secure a consistent brand image with a domain name that
                   matches your business.
                 </p>
-                <Link to={"/products"} class="relative inline-block text-lg mt-6 group">
+                <Link
+                  to={"/products"}
+                  class="relative inline-block text-lg mt-6 group"
+                >
                   <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
                     <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
                     <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
@@ -62,13 +71,11 @@ export default function Hero5() {
                 {raaasi.map((item, index) => (
                   <div
                     key={index}
-                    className="flex flex-col m-auto items-center justify-center"
+                    className="flex flex-col m-auto overflow-auto items-center justify-center"
                   >
-                    <img
-                      alt="imggg"
-                      src={item.gemsImg}
-                      className="m-auto w-60 "
-                      style={{ filter: "drop-shadow(2px 4px 6px yellow)" }}
+                    <AnimatedImage
+                      imgSrc={item.gemsImg}
+                      classN="m-auto w-60 "
                     />
                     <h1 className="text-gray-200 text-center">
                       {item.gemstone}
@@ -78,7 +85,7 @@ export default function Hero5() {
               </Slider>
             </div>
           </div>
-          <div className=" mt-2" style={{backgroundImage:`url(${bg4})`}}>
+          <div className=" mt-2" style={{ backgroundImage: `url(${bg4})` }}>
             <img alt="banner" src={banner1} className="w-full  " />
           </div>
         </div>

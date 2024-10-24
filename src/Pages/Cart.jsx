@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Cart() {
   return (
     <div>
-      <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+      <section class=" py-8 antialiased dark:bg-gray-900 md:py-16">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
             <li class="after:border-1 flex items-center text-[#2abf2a] after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200  dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
@@ -80,15 +80,14 @@ export default function Cart() {
             <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
               <div class="space-y-6">
                 {products.slice(0, 5).map((item, index) => (
-                  <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                  <div class="rounded-lg border border-gray-200 bg-[#f5ffff] p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                     <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                      <a href="#" class="shrink-0 md:order-1">
+         
                         <img
-                          class="hidden h-20 w-20 dark:block"
+                          class="  h-20 w-20  "
                           src={item.img}
-                          alt="imac image"
-                        />
-                      </a>
+                          alt="imac himage"
+                        /> 
 
                       <label for="counter-input" class="sr-only">
                         Choose quantity:
@@ -164,29 +163,7 @@ export default function Cart() {
                         </p>
 
                         <div class="flex items-center gap-4">
-                          <button
-                            type="button"
-                            class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-                          >
-                            <svg
-                              class="me-1.5 h-5 w-5"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-                              />
-                            </svg>
-                            Add to Favorites
-                          </button>
+                           
 
                           <button
                             type="button"
@@ -378,10 +355,9 @@ export default function Cart() {
                     {" "}
                     or{" "}
                   </span>
-                  <a
-                    href="#"
+                  <Link to={"/products"}
                     title=""
-                    class="inline-flex items-center gap-2 text-sm font-medium text-gray-200 underline hover:no-underline dark:text-primary-500"
+                    class="inline-flex items-center gap-2 text-sm font-medium text-gray-800 underline hover:no-underline dark:text-primary-500"
                   >
                     Continue Shopping
                     <svg
@@ -399,7 +375,7 @@ export default function Cart() {
                         d="M19 12H5m14 0-4 4m4-4-4-4"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -416,7 +392,7 @@ export default function Cart() {
                     <input
                       type="text"
                       id="voucher"
-                      class="block w-full rounded-lg border border-gray-300 bg-gray-300 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600  dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      class="block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600  dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                       placeholder=""
                       required
                     />

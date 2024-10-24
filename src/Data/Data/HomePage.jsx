@@ -29,7 +29,7 @@ export const features = [
     title: "Fast Performance",
     bg: require("../images/img5.jpg"),
     description:
-      "We build our templates for speed in mind, for super-fast load times so your customers never waver.",
+      "We build our website for speed in mind, for super-fast load times so your customers never waver.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export const services = [
     title: "Fast Performance",
     bg: require("../images/img9.png"),
     description:
-      "We build our templates for speed in mind, for super-fast load times so your customers never waver.",
+      "We build our website for speed in mind, for super-fast load times so your customers never waver.",
     img: require("../images/img9.png"),
   },
   {
@@ -104,6 +104,7 @@ export const services = [
 
 export const raaasi = [
   {
+    id: "1",
     title: "Aries",
     hindiTitle: "मेष",
     img: require("../images/r1.png"),
@@ -115,6 +116,7 @@ export const raaasi = [
     startingLetters: "चू, चे, चो, ला, ली, लू, ले, लो, या, आ",
   },
   {
+    id: "2",
     title: "Taurus",
     hindiTitle: "वृष",
     img: require("../images/r2.png"),
@@ -126,6 +128,7 @@ export const raaasi = [
     startingLetters: "इ, उ, ए, ओ, वा, वी, वू, वे, वो",
   },
   {
+    id: "3",
     title: "Gemini",
     hindiTitle: "मिथुन",
     img: require("../images/r3.png"),
@@ -137,6 +140,7 @@ export const raaasi = [
     startingLetters: "क, की, कू, के, को, ह, च, छ",
   },
   {
+    id: "4",
     title: "Cancer",
     hindiTitle: "कर्क",
     img: require("../images/r4.png"),
@@ -148,6 +152,7 @@ export const raaasi = [
     startingLetters: "हि, हु, हे, हो, डा, डि, डु, डे",
   },
   {
+    id: "5",
     title: "Leo",
     hindiTitle: "सिंह",
     img: require("../images/r5.png"),
@@ -159,6 +164,7 @@ export const raaasi = [
     startingLetters: "मा, मी, मू, मे, मो, टा, टि",
   },
   {
+    id: "6",
     title: "Virgo",
     hindiTitle: "कन्या",
     img: require("../images/r6.png"),
@@ -170,6 +176,7 @@ export const raaasi = [
     startingLetters: "टा, टि, टु, ते, तो, ना, नी",
   },
   {
+    id: "7",
     title: "Libra",
     hindiTitle: "तुला",
     img: require("../images/r7.png"),
@@ -181,6 +188,7 @@ export const raaasi = [
     startingLetters: "रा, री, रू, रे, रो, ना, नी",
   },
   {
+    id: "8",
     title: "Scorpio",
     hindiTitle: "वृश्चिक",
     img: require("../images/r8.png"),
@@ -192,6 +200,7 @@ export const raaasi = [
     startingLetters: "ना, नी, नू, ने, नो, या, यि",
   },
   {
+    id: "9",
     title: "Sagittarius",
     hindiTitle: "धनु",
     img: require("../images/r9.png"),
@@ -203,8 +212,9 @@ export const raaasi = [
     startingLetters: "ये, यो, भ, भी, भू, ध, फ",
   },
   {
+    id: "10",
     title: "Capricorn",
-    hindiTitle: "मकर",
+    hindiTitle: "मकर", 
     img: require("../images/r10.png"),
     content:
       "Capricorn is the tenth sign of the zodiac and is represented by the goat.",
@@ -214,10 +224,11 @@ export const raaasi = [
     startingLetters: "भा, भी, भू, ध, फ",
   },
   {
+    id: "11",
     title: "Aquarius",
     hindiTitle: "कुंभ",
     img: require("../images/r11.png"),
-    content:
+    content: 
       "Aquarius is the eleventh sign of the zodiac and is represented by the water bearer.",
     gemstone: "नीलम (Blue Sapphire)",
     rulingPlanet: "शनि",
@@ -225,6 +236,7 @@ export const raaasi = [
     startingLetters: "ग, घ, च, छ, ज, झ, ट",
   },
   {
+    id: "12",
     title: "Pisces",
     hindiTitle: "मीन",
     img: require("../images/r12.png"),
@@ -243,7 +255,8 @@ export const testimonials = [
     title: "Rapper & Entrepreneur",
     image:
       "https://pbs.twimg.com/profile_images/1276461929934942210/cqNhNk6v_400x400.jpg",
-    quote: "Find God.",
+    quote:
+      "Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum",
     link: "https://twitter.com/kanyewest",
   },
   {
@@ -287,7 +300,8 @@ export const testimonials = [
     title: "Rapper & Entrepreneur",
     image:
       "https://pbs.twimg.com/profile_images/1276461929934942210/cqNhNk6v_400x400.jpg",
-    quote: "Find God.",
+    quote:
+      "Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum.",
     link: "https://twitter.com/kanyewest",
   },
   {
@@ -316,5 +330,5 @@ export const testimonials = [
     quote:
       "Tortor dignissim convallis aenean et tortor at. At ultrices mi tempus imperdiet nulla malesuada.",
     link: "https://twitter.com/satyanadella",
-  }
+  },
 ];

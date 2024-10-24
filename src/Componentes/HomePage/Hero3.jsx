@@ -1,10 +1,33 @@
 import React from "react";
-import img6 from "../../Data/images/img6.webp";
 import svgbg from "../../Data/images/shape.svg";
-import { services } from "../../Data/Data/HomePage";
-import img10 from "../../Data/images/img10.jpg"
+import img10 from "../../Data/images/img10.jpg";
+import { AnimatedImage } from "../AnimatedImage";
+import { useInView, motion } from "framer-motion";
 
 export default function Hero3() {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const isInView2 = useInView(ref, { once: true });
+
+  const variants = {
+    hidden: { scale: 0.2, opacity: 0 },
+    visible: { scale: 1, opacity: 1 },
+  };
+
+  const listItemVariants = {
+    hidden: { opacity: 0, x:  40 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2, // Delay between each item's appearance
+      },
+    },
+  };
+
   return (
     <div className="px-6 lg:px-0">
       <img alt="bgi" src={svgbg} />
@@ -12,7 +35,15 @@ export default function Hero3() {
         <div class="container mx-auto">
           <div class="flex flex-wrap-reverse items-center justify-between -mx-4">
             <div class="w-full px-4 lg:w-6/12">
-              <img alt="imggg" src={img10}/>
+              <motion.img
+                ref={ref}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 1.2 }}
+                src={img10}
+                alt="Coffee cup"
+              />
             </div>
             <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div class="mt-10 lg:mt-0">
@@ -33,38 +64,93 @@ export default function Hero3() {
                   matches your business.
                 </p>
                 <div className="flex gap-10">
-                  <ul className="text-gray-200">
-                    <li className="flex items-center">
+                  <motion.ul
+                    className="text-gray-200"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">❤️</span> Love Problem
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">💍</span> Marriage Problem
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">💼</span> Career Problem
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">🏥</span> Health Problem
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">💰</span> Business Problem
-                    </li>
-                  </ul>
+                    </motion.li>
+                  </motion.ul>
 
-                  <ul className="text-gray-200">
-                    <li className="flex items-center">
+                  <motion.ul
+                    className="text-gray-200"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">⚖️</span> Court Case
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">🖐️</span> Palmistry
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">🔮</span> Kundli Analysis
-                    </li>
-                    <li className="flex items-center">
+                    </motion.li>
+                    <motion.li
+                      variants={listItemVariants}
+                      animate={isInView2 ? "visible" : "hidden"}
+                      transition={{ duration: 1.2 }}
+                      className="flex items-center"
+                    >
                       <span className="mr-2">👤</span> Face Reading
-                    </li>
-                  </ul>
+                    </motion.li>
+                  </motion.ul>
                 </div>
               </div>
             </div>

@@ -5,16 +5,15 @@ import { Link } from "react-router-dom";
 export default function Products() {
   return (
     <div>
-      <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
+      <section class=" py-8 antialiased dark:bg-gray-900 md:py-12">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
             <div>
               <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                   <li class="inline-flex items-center">
-                    <a
-                      href="#"
-                      class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
+                    <p
+                      class="inline-flex items-center text-sm font-medium text-gray-300 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
                     >
                       <svg
                         class="me-2.5 h-3 w-3"
@@ -26,7 +25,7 @@ export default function Products() {
                         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                       </svg>
                       Home
-                    </a>
+                    </p>
                   </li>
                   <li>
                     <div class="flex items-center">
@@ -47,17 +46,16 @@ export default function Products() {
                           d="m9 5 7 7-7 7"
                         />
                       </svg>
-                      <a
-                        href="#"
-                        class="ms-1 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
+                      <p
+                        class="ms-1 text-sm font-medium text-gray-300 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
                       >
                         Products
-                      </a>
+                      </p>
                     </div>
                   </li>
                 </ol>
               </nav>
-              <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+              <h2 class="mt-3 text-xl font-semibold text-gray-200 dark:text-white sm:text-2xl">
                 Gem and Jewellery
               </h2>
             </div>
@@ -155,58 +153,58 @@ export default function Products() {
                   aria-labelledby="sortDropdownButton"
                 >
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       The most popular{" "}
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       Newest{" "}
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       Increasing price{" "}
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       Decreasing price{" "}
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       No. reviews{" "}
-                    </a>
+                    </p>
                   </li>
                   <li>
-                    <a
+                    <p
                       href="#"
                       class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       {" "}
                       Discount %{" "}
-                    </a>
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -216,11 +214,11 @@ export default function Products() {
             {products.map((item, index) => (
               <Link
                 to={{ pathname: "/buy-product", search: `?id=${item.id}` }}
-                class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                class="shadow-[0px_8px_181px_10px_#1a202c] rounded-lg border border-gray-500 bg-black p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
               >
                 <div class="h-56 w-full">
                   <img
-                    class="mx-auto hidden h-full dark:block"
+                    class="mx-auto  h-full "
                     src={item.img}
                     alt=""
                   />
@@ -304,12 +302,12 @@ export default function Products() {
                     </div>
                   </div>
 
-                  <a
+                  <p
                     href="#"
-                    class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"
+                    class="text-lg font-semibold leading-tight text-gray-200 hover:underline dark:text-white"
                   >
                     {item.name}
-                  </a>
+                  </p>
 
                   <div class="mt-2 flex items-center gap-2">
                     <div class="flex items-center">
@@ -416,12 +414,12 @@ export default function Products() {
                   </ul>
 
                   <div class="mt-4 flex items-center justify-between gap-4">
-                    <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
+                    <p class="text-2xl font-extrabold leading-tight text-[#3dd343] dark:text-white">
                       ₹{item.price}
                     </p>
 
                     <Link to={"/cart"}
-                      class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      class="inline-flex items-center rounded-lg bg-[#3c3cf1] px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                     >
                       <svg
                         class="-ms-2 me-2 h-5 w-5"
