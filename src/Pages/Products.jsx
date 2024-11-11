@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { products } from "../Data/Data/Products";
 import { Link } from "react-router-dom";
 
 export default function Products() {
+  const [cart, setCart] = useState(() => {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  });
+
+  const handleAddToCart = (id) => {
+    if (!cart.includes(id)) {
+      const updatedCart = [...cart, id]; // Create a new array with the new item added
+      setCart(updatedCart); // Update the state
+      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+    } else {
+      console.log("Item is already in the cart");
+    }
+  };
+
+  // You could use useEffect to sync the state with localStorage if needed
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div>
-      <section class=" py-8 antialiased dark:bg-gray-900 md:py-12">
+      <section class=" py-8 antialiased   md:py-12">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
             <div>
               <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                   <li class="inline-flex items-center">
-                    <p
-                      class="inline-flex items-center text-sm font-medium text-gray-300 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
-                    >
+                    <p class="inline-flex items-center text-sm font-medium text-gray-300 hover:text-primary-600 text-gray-400 hover:text-white">
                       <svg
                         class="me-2.5 h-3 w-3"
                         aria-hidden="true"
@@ -46,16 +63,14 @@ export default function Products() {
                           d="m9 5 7 7-7 7"
                         />
                       </svg>
-                      <p
-                        class="ms-1 text-sm font-medium text-gray-300 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
-                      >
+                      <p class="ms-1 text-sm font-medium text-gray-300 hover:text-primary-600 text-gray-400 hover:text-white md:ms-2">
                         Products
                       </p>
                     </div>
                   </li>
                 </ol>
               </nav>
-              <h2 class="mt-3 text-xl font-semibold text-gray-200 dark:text-white sm:text-2xl">
+              <h2 class="mt-3 text-xl font-semibold text-gray-800  sm:text-2xl">
                 Gem and Jewellery
               </h2>
             </div>
@@ -64,7 +79,7 @@ export default function Products() {
                 data-modal-toggle="filterModal"
                 data-modal-target="filterModal"
                 type="button"
-                class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+                class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 sm:w-auto"
               >
                 <svg
                   class="-ms-0.5 me-2 h-4 w-4"
@@ -105,7 +120,7 @@ export default function Products() {
                 id="sortDropdownButton1"
                 data-dropdown-toggle="dropdownSort1"
                 type="button"
-                class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+                class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 sm:w-auto"
               >
                 <svg
                   class="-ms-0.5 me-2 h-4 w-4"
@@ -145,17 +160,17 @@ export default function Products() {
               </button>
               <div
                 id="dropdownSort1"
-                class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+                class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow bg-gray-700"
                 data-popper-placement="bottom"
               >
                 <ul
-                  class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
+                  class="p-2 text-left text-sm font-medium text-gray-500 text-gray-400"
                   aria-labelledby="sortDropdownButton"
                 >
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       The most popular{" "}
@@ -164,7 +179,7 @@ export default function Products() {
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       Newest{" "}
@@ -173,7 +188,7 @@ export default function Products() {
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       Increasing price{" "}
@@ -182,7 +197,7 @@ export default function Products() {
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       Decreasing price{" "}
@@ -191,7 +206,7 @@ export default function Products() {
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       No. reviews{" "}
@@ -200,7 +215,7 @@ export default function Products() {
                   <li>
                     <p
                       href="#"
-                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-600 hover:text-white"
                     >
                       {" "}
                       Discount %{" "}
@@ -212,20 +227,17 @@ export default function Products() {
           </div>
           <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((item, index) => (
-              <Link
-                to={{ pathname: "/buy-product", search: `?id=${item.id}` }}
-                class="shadow-[0px_8px_181px_10px_#1a202c] rounded-lg border border-gray-500 bg-black p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-              >
+              <div class="shadow-[0px_8px_181px_10px_#1a202c] rounded-lg border border-gray-500  p-6 shadow-sm border-gray-700 bg-blur bg-white/50">
                 <div class="h-56 w-full">
-                  <img
-                    class="mx-auto  h-full "
-                    src={item.img}
-                    alt=""
-                  />
+                  <Link
+                    to={{ pathname: "/buy-product", search: `?id=${item.id}` }}
+                  >
+                    <img class="mx-auto  h-full " src={item.img} alt="" />
+                  </Link>
                 </div>
                 <div class="pt-6">
                   <div class="mb-4 flex items-center justify-between gap-4">
-                    <span class="animate-pulse animate-duration-[1200ms] me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-[#00ff16] dark:bg-primary-900 dark:text-primary-300">
+                    <span class="animate-pulse animate-duration-[1200ms] me-2 rounded bg-primary-100  py-0.5 text-xs font-medium text-[#993017] bg-primary-900 text-primary-300">
                       {" "}
                       Up to 35% off{" "}
                     </span>
@@ -234,7 +246,7 @@ export default function Products() {
                       <button
                         type="button"
                         data-tooltip-target="tooltip-quick-look"
-                        class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         <span class="sr-only"> Quick look </span>
                         <svg
@@ -258,56 +270,15 @@ export default function Products() {
                           />
                         </svg>
                       </button>
-                      <div
-                        id="tooltip-quick-look"
-                        role="tooltip"
-                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                        data-popper-placement="top"
-                      >
-                        Quick look
-                        <div class="tooltip-arrow" data-popper-arrow=""></div>
-                      </div>
-
-                      <button
-                        type="button"
-                        data-tooltip-target="tooltip-add-to-favorites"
-                        class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                      >
-                        <span class="sr-only"> Add to Favorites </span>
-                        <svg
-                          class="h-5 w-5"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"
-                          />
-                        </svg>
-                      </button>
-                      <div
-                        id="tooltip-add-to-favorites"
-                        role="tooltip"
-                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                        data-popper-placement="top"
-                      >
-                        Add to favorites
-                        <div class="tooltip-arrow" data-popper-arrow=""></div>
-                      </div>
                     </div>
                   </div>
 
-                  <p
-                    href="#"
-                    class="text-lg font-semibold leading-tight text-gray-200 hover:underline dark:text-white"
+                  <Link
+                    to={{ pathname: "/buy-product", search: `?id=${item.id}` }}
+                    class="text-lg font-semibold leading-tight text-gray-800 hover:underline"
                   >
                     {item.name}
-                  </p>
+                  </Link>
 
                   <div class="mt-2 flex items-center gap-2">
                     <div class="flex items-center">
@@ -362,10 +333,10 @@ export default function Products() {
                       </svg>
                     </div>
 
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    <p class="text-sm font-medium text-gray-900 text-white">
                       {item.rating.toFixed(1)}
                     </p>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <p class="text-sm font-medium text-gray-500 text-gray-400">
                       ({item.total_buy})
                     </p>
                   </div>
@@ -373,7 +344,7 @@ export default function Products() {
                   <ul class="mt-2 flex items-center gap-4">
                     <li class="flex items-center gap-2">
                       <svg
-                        class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                        class="h-4 w-4 text-gray-500 text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -387,14 +358,14 @@ export default function Products() {
                           d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
                         />
                       </svg>
-                      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      <p class="text-sm font-medium text-gray-500 text-gray-400">
                         Fast Delivery
                       </p>
                     </li>
 
                     <li class="flex items-center gap-2">
                       <svg
-                        class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                        class="h-4 w-4 text-gray-500 text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -407,42 +378,69 @@ export default function Products() {
                           d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
                         />
                       </svg>
-                      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      <p class="text-sm font-medium text-gray-500 text-gray-400">
                         Best Price
                       </p>
                     </li>
                   </ul>
 
                   <div class="mt-4 flex items-center justify-between gap-4">
-                    <p class="text-2xl font-extrabold leading-tight text-[#3dd343] dark:text-white">
+                    <p class="text-2xl font-extrabold leading-tight text-[#A16207] ">
                       ₹{item.price}
                     </p>
 
-                    <Link to={"/cart"}
-                      class="inline-flex items-center rounded-lg bg-[#3c3cf1] px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    >
-                      <svg
-                        class="-ms-2 me-2 h-5 w-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
+                    {cart.includes(item.id) ? (
+                      <Link
+                        to={"/cart"}
+                        class="inline-flex items-center rounded-lg bg-indigo-400 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
                       >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                        />
-                      </svg>
-                      Add to cart
-                    </Link>
+                        <svg
+                          class="-ms-2 me-2 h-5 w-5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                          />
+                        </svg>
+                        View Cart
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => handleAddToCart(item.id)}
+                        class="inline-flex items-center rounded-lg bg-indigo-400 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+                      >
+                        <svg
+                          class="-ms-2 me-2 h-5 w-5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                          />
+                        </svg>
+                        Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -455,14 +453,14 @@ export default function Products() {
           class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
         >
           <div class="relative h-full w-full max-w-xl md:h-auto">
-            <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
+            <div class="relative rounded-lg bg-white shadow bg-gray-800">
               <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-                <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                <h3 class="text-lg font-normal text-gray-500 text-gray-400">
                   Filters
                 </h3>
                 <button
                   type="button"
-                  class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 hover:bg-gray-600 hover:text-white"
                   data-modal-toggle="filterModal"
                 >
                   <svg
@@ -486,7 +484,7 @@ export default function Products() {
                 </button>
               </div>
               <div class="px-4 md:px-5">
-                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                <div class="mb-4 border-b border-gray-200 border-gray-700">
                   <ul
                     class="-mb-px flex flex-wrap text-center text-sm font-medium"
                     id="myTab"
@@ -508,7 +506,7 @@ export default function Products() {
                     </li>
                     <li class="mr-1" role="presentation">
                       <button
-                        class="inline-block px-2 pb-2 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
+                        class="inline-block px-2 pb-2 hover:border-gray-300 hover:text-gray-600 hover:text-gray-300"
                         id="advanced-filers-tab"
                         data-tabs-target="#advanced-filters"
                         type="button"
@@ -529,7 +527,7 @@ export default function Products() {
                     aria-labelledby="brand-tab"
                   >
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         A
                       </h5>
 
@@ -538,12 +536,12 @@ export default function Products() {
                           id="apple"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="apple"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Apple (56){" "}
@@ -556,12 +554,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="asus"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Asus (97){" "}
@@ -573,12 +571,12 @@ export default function Products() {
                           id="acer"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="acer"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Acer (234){" "}
@@ -590,12 +588,12 @@ export default function Products() {
                           id="allview"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="allview"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Allview (45){" "}
@@ -608,12 +606,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="asus"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Atari (176){" "}
@@ -625,12 +623,12 @@ export default function Products() {
                           id="amd"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="amd"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           AMD (49){" "}
@@ -642,12 +640,12 @@ export default function Products() {
                           id="aruba"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="aruba"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Aruba (16){" "}
@@ -656,7 +654,7 @@ export default function Products() {
                     </div>
 
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         B
                       </h5>
 
@@ -665,12 +663,12 @@ export default function Products() {
                           id="beats"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="beats"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Beats (56){" "}
@@ -683,12 +681,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="bose"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Bose (97){" "}
@@ -700,12 +698,12 @@ export default function Products() {
                           id="benq"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="benq"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           BenQ (45){" "}
@@ -717,12 +715,12 @@ export default function Products() {
                           id="bosch"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="bosch"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Bosch (176){" "}
@@ -735,12 +733,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="brother"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Brother (176){" "}
@@ -752,12 +750,12 @@ export default function Products() {
                           id="biostar"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="biostar"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Biostar (49){" "}
@@ -769,12 +767,12 @@ export default function Products() {
                           id="braun"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="braun"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Braun (16){" "}
@@ -786,12 +784,12 @@ export default function Products() {
                           id="blaupunkt"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="blaupunkt"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Blaupunkt (45){" "}
@@ -803,12 +801,12 @@ export default function Products() {
                           id="benq2"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="benq2"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           BenQ (23){" "}
@@ -817,7 +815,7 @@ export default function Products() {
                     </div>
 
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         C
                       </h5>
 
@@ -826,12 +824,12 @@ export default function Products() {
                           id="canon"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="canon"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Canon (49){" "}
@@ -844,12 +842,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="cisco"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Cisco (97){" "}
@@ -861,12 +859,12 @@ export default function Products() {
                           id="cowon"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="cowon"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Cowon (234){" "}
@@ -878,12 +876,12 @@ export default function Products() {
                           id="clevo"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="clevo"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Clevo (45){" "}
@@ -895,12 +893,12 @@ export default function Products() {
                           id="corsair"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="corsair"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Corsair (15){" "}
@@ -912,12 +910,12 @@ export default function Products() {
                           id="csl"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="csl"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Canon (49){" "}
@@ -926,7 +924,7 @@ export default function Products() {
                     </div>
 
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         D
                       </h5>
 
@@ -935,12 +933,12 @@ export default function Products() {
                           id="dell"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="dell"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Dell (56){" "}
@@ -952,12 +950,12 @@ export default function Products() {
                           id="dogfish"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="dogfish"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Dogfish (24){" "}
@@ -969,12 +967,12 @@ export default function Products() {
                           id="dyson"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="dyson"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Dyson (234){" "}
@@ -986,12 +984,12 @@ export default function Products() {
                           id="dobe"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="dobe"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Dobe (5){" "}
@@ -1003,12 +1001,12 @@ export default function Products() {
                           id="digitus"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="digitus"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Digitus (1){" "}
@@ -1017,7 +1015,7 @@ export default function Products() {
                     </div>
 
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         E
                       </h5>
 
@@ -1026,12 +1024,12 @@ export default function Products() {
                           id="emetec"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="emetec"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Emetec (56){" "}
@@ -1043,12 +1041,12 @@ export default function Products() {
                           id="extreme"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="extreme"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Extreme (10){" "}
@@ -1060,12 +1058,12 @@ export default function Products() {
                           id="elgato"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="elgato"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Elgato (234){" "}
@@ -1077,12 +1075,12 @@ export default function Products() {
                           id="emerson"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="emerson"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Emerson (45){" "}
@@ -1095,12 +1093,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="emi"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           EMI (176){" "}
@@ -1112,12 +1110,12 @@ export default function Products() {
                           id="fugoo"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="fugoo"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Fugoo (49){" "}
@@ -1126,7 +1124,7 @@ export default function Products() {
                     </div>
 
                     <div class="space-y-2">
-                      <h5 class="text-lg font-medium uppercase text-black dark:text-white">
+                      <h5 class="text-lg font-medium uppercase text-black text-white">
                         F
                       </h5>
 
@@ -1135,12 +1133,12 @@ export default function Products() {
                           id="fujitsu"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="fujitsu"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Fujitsu (97){" "}
@@ -1153,12 +1151,12 @@ export default function Products() {
                           type="checkbox"
                           value=""
                           checked
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="fitbit"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Fitbit (56){" "}
@@ -1170,12 +1168,12 @@ export default function Products() {
                           id="foxconn"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="foxconn"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Foxconn (234){" "}
@@ -1187,12 +1185,12 @@ export default function Products() {
                           id="floston"
                           type="checkbox"
                           value=""
-                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                         />
 
                         <label
                           for="floston"
-                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                         >
                           {" "}
                           Floston (45){" "}
@@ -1213,7 +1211,7 @@ export default function Products() {
                       <div>
                         <label
                           for="min-price"
-                          class="block text-sm font-medium text-gray-900 dark:text-white"
+                          class="block text-sm font-medium text-gray-900 text-white"
                         >
                           {" "}
                           Min Price{" "}
@@ -1225,14 +1223,14 @@ export default function Products() {
                           max="7000"
                           value="300"
                           step="1"
-                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
+                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 bg-gray-700"
                         />
                       </div>
 
                       <div>
                         <label
                           for="max-price"
-                          class="block text-sm font-medium text-gray-900 dark:text-white"
+                          class="block text-sm font-medium text-gray-900 text-white"
                         >
                           {" "}
                           Max Price{" "}
@@ -1244,7 +1242,7 @@ export default function Products() {
                           max="7000"
                           value="3500"
                           step="1"
-                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
+                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 bg-gray-700"
                         />
                       </div>
 
@@ -1255,12 +1253,12 @@ export default function Products() {
                           value="300"
                           min="0"
                           max="7000"
-                          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 "
+                          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 border-gray-600 bg-gray-700 text-white placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500 "
                           placeholder=""
                           required
                         />
 
-                        <div class="shrink-0 text-sm font-medium dark:text-gray-300">
+                        <div class="shrink-0 text-sm font-medium text-gray-300">
                           to
                         </div>
 
@@ -1270,7 +1268,7 @@ export default function Products() {
                           value="3500"
                           min="0"
                           max="7000"
-                          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 border-gray-600 bg-gray-700 text-white placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500"
                           placeholder=""
                           required
                         />
@@ -1281,7 +1279,7 @@ export default function Products() {
                       <div>
                         <label
                           for="min-delivery-time"
-                          class="block text-sm font-medium text-gray-900 dark:text-white"
+                          class="block text-sm font-medium text-gray-900 text-white"
                         >
                           {" "}
                           Min Delivery Time (Days){" "}
@@ -1294,7 +1292,7 @@ export default function Products() {
                           max="50"
                           value="30"
                           step="1"
-                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
+                          class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 bg-gray-700"
                         />
                       </div>
 
@@ -1304,7 +1302,7 @@ export default function Products() {
                         value="30"
                         min="3"
                         max="50"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 "
+                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 border-gray-600 bg-gray-700 text-white placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500 "
                         placeholder=""
                         required
                       />
@@ -1312,12 +1310,12 @@ export default function Products() {
                   </div>
 
                   <div>
-                    <h6 class="mb-2 text-sm font-medium text-black dark:text-white">
+                    <h6 class="mb-2 text-sm font-medium text-black text-white">
                       Condition
                     </h6>
 
-                    <ul class="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-                      <li class="w-full border-r border-gray-200 dark:border-gray-600">
+                    <ul class="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 border-gray-600 bg-gray-700 text-white">
+                      <li class="w-full border-r border-gray-200 border-gray-600">
                         <div class="flex items-center pl-3">
                           <input
                             id="condition-all"
@@ -1325,29 +1323,29 @@ export default function Products() {
                             value=""
                             name="list-radio"
                             checked
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-500 bg-gray-600 ring-offset-gray-700 focus:ring-primary-600"
                           />
                           <label
                             for="condition-all"
-                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             All{" "}
                           </label>
                         </div>
                       </li>
-                      <li class="w-full border-r border-gray-200 dark:border-gray-600">
+                      <li class="w-full border-r border-gray-200 border-gray-600">
                         <div class="flex items-center pl-3">
                           <input
                             id="condition-new"
                             type="radio"
                             value=""
                             name="list-radio"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-500 bg-gray-600 ring-offset-gray-700 focus:ring-primary-600"
                           />
                           <label
                             for="condition-new"
-                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             New{" "}
@@ -1361,11 +1359,11 @@ export default function Products() {
                             type="radio"
                             value=""
                             name="list-radio"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-500 bg-gray-600 ring-offset-gray-700 focus:ring-primary-600"
                           />
                           <label
                             for="condition-used"
-                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 w-full py-3 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             Used{" "}
@@ -1377,7 +1375,7 @@ export default function Products() {
 
                   <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
                     <div>
-                      <h6 class="mb-2 text-sm font-medium text-black dark:text-white">
+                      <h6 class="mb-2 text-sm font-medium text-black text-white">
                         Colour
                       </h6>
                       <div class="space-y-2">
@@ -1386,12 +1384,12 @@ export default function Products() {
                             id="blue"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="blue"
-                            class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 flex items-center text-sm font-medium text-gray-900 text-gray-300"
                           >
                             <div class="mr-2 h-3.5 w-3.5 rounded-full bg-primary-600"></div>
                             Blue
@@ -1403,12 +1401,12 @@ export default function Products() {
                             id="gray"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="gray"
-                            class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 flex items-center text-sm font-medium text-gray-900 text-gray-300"
                           >
                             <div class="mr-2 h-3.5 w-3.5 rounded-full bg-gray-400"></div>
                             Gray
@@ -1421,12 +1419,12 @@ export default function Products() {
                             type="checkbox"
                             value=""
                             checked
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="green"
-                            class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 flex items-center text-sm font-medium text-gray-900 text-gray-300"
                           >
                             <div class="mr-2 h-3.5 w-3.5 rounded-full bg-green-400"></div>
                             Green
@@ -1438,12 +1436,12 @@ export default function Products() {
                             id="pink"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="pink"
-                            class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 flex items-center text-sm font-medium text-gray-900 text-gray-300"
                           >
                             <div class="mr-2 h-3.5 w-3.5 rounded-full bg-pink-400"></div>
                             Pink
@@ -1456,12 +1454,12 @@ export default function Products() {
                             type="checkbox"
                             value=""
                             checked
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="red"
-                            class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 flex items-center text-sm font-medium text-gray-900 text-gray-300"
                           >
                             <div class="mr-2 h-3.5 w-3.5 rounded-full bg-red-500"></div>
                             Red
@@ -1471,7 +1469,7 @@ export default function Products() {
                     </div>
 
                     <div>
-                      <h6 class="mb-2 text-sm font-medium text-black dark:text-white">
+                      <h6 class="mb-2 text-sm font-medium text-black text-white">
                         Rating
                       </h6>
                       <div class="space-y-2">
@@ -1481,7 +1479,7 @@ export default function Products() {
                             type="radio"
                             value=""
                             name="rating"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
                           <label
                             for="five-stars"
@@ -1546,7 +1544,7 @@ export default function Products() {
                             type="radio"
                             value=""
                             name="rating"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
                           <label
                             for="four-stars"
@@ -1594,7 +1592,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1612,7 +1610,7 @@ export default function Products() {
                             value=""
                             name="rating"
                             checked
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
                           <label
                             for="three-stars"
@@ -1650,7 +1648,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1660,7 +1658,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1677,7 +1675,7 @@ export default function Products() {
                             type="radio"
                             value=""
                             name="rating"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
                           <label for="two-stars" class="ml-2 flex items-center">
                             <svg
@@ -1702,7 +1700,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1712,7 +1710,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1722,7 +1720,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1739,7 +1737,7 @@ export default function Products() {
                             type="radio"
                             value=""
                             name="rating"
-                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
                           <label for="one-star" class="ml-2 flex items-center">
                             <svg
@@ -1754,7 +1752,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1764,7 +1762,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1774,7 +1772,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1784,7 +1782,7 @@ export default function Products() {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                              class="h-5 w-5 text-gray-300 text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1798,7 +1796,7 @@ export default function Products() {
                     </div>
 
                     <div>
-                      <h6 class="mb-2 text-sm font-medium text-black dark:text-white">
+                      <h6 class="mb-2 text-sm font-medium text-black text-white">
                         Weight
                       </h6>
 
@@ -1808,12 +1806,12 @@ export default function Products() {
                             id="under-1-kg"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="under-1-kg"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             Under 1 kg{" "}
@@ -1826,12 +1824,12 @@ export default function Products() {
                             type="checkbox"
                             value=""
                             checked
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="1-1-5-kg"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             1-1,5 kg{" "}
@@ -1843,12 +1841,12 @@ export default function Products() {
                             id="1-5-2-kg"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="1-5-2-kg"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             1,5-2 kg{" "}
@@ -1860,12 +1858,12 @@ export default function Products() {
                             id="2-5-3-kg"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="2-5-3-kg"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             2,5-3 kg{" "}
@@ -1877,12 +1875,12 @@ export default function Products() {
                             id="over-3-kg"
                             type="checkbox"
                             value=""
-                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                           />
 
                           <label
                             for="over-3-kg"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            class="ml-2 text-sm font-medium text-gray-900 text-gray-300"
                           >
                             {" "}
                             Over 3 kg{" "}
@@ -1893,7 +1891,7 @@ export default function Products() {
                   </div>
 
                   <div>
-                    <h6 class="mb-2 text-sm font-medium text-black dark:text-white">
+                    <h6 class="mb-2 text-sm font-medium text-black text-white">
                       Delivery type
                     </h6>
 
@@ -1909,7 +1907,7 @@ export default function Products() {
                         />
                         <label
                           for="delivery-usa"
-                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
+                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 border-gray-700 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:text-primary-500 md:p-5"
                         >
                           <div class="block">
                             <div class="w-full text-lg font-semibold">USA</div>
@@ -1927,7 +1925,7 @@ export default function Products() {
                         />
                         <label
                           for="delivery-europe"
-                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
+                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 border-gray-700 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:text-primary-500 md:p-5"
                         >
                           <div class="block">
                             <div class="w-full text-lg font-semibold">
@@ -1948,7 +1946,7 @@ export default function Products() {
                         />
                         <label
                           for="delivery-asia"
-                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
+                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 border-gray-700 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:text-primary-500 md:p-5"
                         >
                           <div class="block">
                             <div class="w-full text-lg font-semibold">Asia</div>
@@ -1966,7 +1964,7 @@ export default function Products() {
                         />
                         <label
                           for="delivery-australia"
-                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
+                          class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 border-gray-700 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:text-primary-500 md:p-5"
                         >
                           <div class="block">
                             <div class="w-full text-lg font-semibold">

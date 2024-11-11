@@ -1,5 +1,5 @@
 import React from "react";
-import bg5 from "../Data/images/bg5.png";
+import bg5 from "../Data/images/bg-yellow2.jpg";
 import { useLocation } from "react-router-dom";
 import { raaasi } from "../Data/Data/HomePage";
 import { AnimatedText } from "../Componentes/AnimatedImage";
@@ -15,7 +15,7 @@ export default function HoroscopeDetail() {
       className="relative bg-center bg-fixed bg-no-repeat bg-cover py-20"
       style={{ backgroundImage: `url(${bg5})` }}
     >
-      <div className="absolute top-0 w-full h-full bg-black opacity-80 z-[99]" />
+      {/* <div className="absolute top-0 w-full h-full bg-black opacity-80 z-[99]" /> */}
       <div className="lg:px-20">
         <div className="relative z-[999] flex flex-col justify-center items-center  gap-4">
           <img
@@ -26,12 +26,12 @@ export default function HoroscopeDetail() {
           />
           <AnimatedText
             text={`${raaasi[raaasi.findIndex(item=>item.id === productId)].title} (${raaasi[raaasi.findIndex(item=>item.id === productId)].hindiTitle})`}
-            classN="text-center font-bold text-3xl lg:text-5xl text-white"
+            classN="text-center font-bold text-3xl lg:text-5xl text-[#A16207]"
           />
-          <div class="w-[90vw] lg:w-[80vw] bg-black shadow-[0px_0px_8px_1px_#f7fafc] rounded-lg text-gray-900 flex justify-center">
-            <div class="  m-0 sm:m-10 bg-gray-700 shadow sm:rounded-lg lg:flex  justify-center flex-1">
+          <div class="w-[90vw] lg:w-[80vw]  bg-white/80 shadow-[0px_0px_8px_1px_#f7fafc] rounded-lg text-gray-900 flex justify-center">
+            <div class="  m-0 sm:m-10  shadow sm:rounded-lg lg:flex  justify-center flex-1">
               
-              <div class="horoscope p-4 flex-1 lg:p-10 bg-green-100    ">
+              <div class="horoscope p-4 flex-1 lg:p-10     ">
                 <div className="flex gap-2 lg:gap-9 mb-2">
                   <h1>राशि :</h1>
                   <h2>{`${raaasi[raaasi.findIndex(item=>item.id === productId)].title} (${raaasi[raaasi.findIndex(item=>item.id === productId)].hindiTitle})`}</h2>
@@ -71,7 +71,7 @@ export default function HoroscopeDetail() {
                 <div>
                   <AnimatedText
                     text="Get Your Personalized Horoscope"
-                    classN="text-2xl text-gray-100 font-semibold "
+                    classN="text-2xl text-gray-800 font-semibold "
                   />
                 </div>
                 <div class="mt-12 flex flex-col items-center">

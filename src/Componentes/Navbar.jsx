@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Gallery() {
   return (
     <div className="text-white">
-      <nav class="bg-gray-800">
+      <nav class="bg-[#FF6F00]">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -56,30 +56,32 @@ export default function Gallery() {
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div class="flex flex-shrink-0 items-center">
-                <img
-                  class="h-8 w-auto"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="Your Company"
-                />
+                <Link to={"/"}>
+                  <img
+                    class="h-8 w-auto"
+                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                    alt="Your Company"
+                  />
+                </Link>
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <Link
                     to={"/"}
-                    class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-gray-700 hover:text-white"
                     aria-current="page"
                   >
                     Dashboard
                   </Link>
                   <Link
                     to={"/products"}
-                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-gray-700 hover:text-white"
                   >
                     Products
                   </Link>
                   <Link
                     to={"/horoscope"}
-                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-gray-700 hover:text-white"
                   >
                     Horoscope
                   </Link>
@@ -139,7 +141,7 @@ export default function Gallery() {
                   .getElementById("mobile-menu")
                   .classList.toggle("hidden");
               }}
-              class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+              class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               aria-current="page"
             >
               Dashboard
@@ -160,7 +162,7 @@ export default function Gallery() {
               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Horoscope
-            </Link> 
+            </Link>
           </div>
         </div>
       </nav>

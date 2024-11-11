@@ -8,7 +8,7 @@ import Testimonial from "../Componentes/HomePage/Testimonial";
 
 export default function HomePage() {
   return (
-    <div className="bg-">
+    <div className="">
       <Hero1/>
       <Hero2/>
       <Hero3/>

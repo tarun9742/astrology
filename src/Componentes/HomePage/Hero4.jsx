@@ -30,13 +30,13 @@ export default function Hero4() {
   return (
     <div className="px-6 lg:px-16">
       <div class="relative mx-auto max-w-5xl text-center">
-        <span class="text-gray-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider">
+        <span class="text-gray-800 my-3 flex items-center justify-center font-bold uppercase tracking-wider">
           Why choose us
         </span>
-        <h2 class="block w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl">
+        <h2 class="block w-full  text-[#A16207] font-bold  text-3xl sm:text-4xl">
           Build a Website That Your Customers Love
         </h2>
-        <p class="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-gray-400">
+        <p class="mx-auto my-4 w-full max-w-xl   text-center font-medium leading-relaxed tracking-wide text-gray-800">
           Our website allow for maximum customization. No technical skills
           required – our intuitive design tools let you get the job done easily.
         </p>
@@ -83,7 +83,7 @@ export default function Hero4() {
         />
         <Link
           to={"/horoscope"}
-          class="relative z-[9999] mt-6 inline-block px-5 font-semibold py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0"
+          class="relative z-[9999] mt-6 inline-block px-10 font-semibold py-2 mx-auto text-white bg-[#FF6F00] rounded-full hover:bg-blue-700 md:mx-0"
         >
           VIEW
         </Link>

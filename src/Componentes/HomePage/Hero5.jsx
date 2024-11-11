@@ -33,19 +33,19 @@ export default function Hero5() {
           <div class="flex flex-wrap   items-center justify-between -mx-4">
             <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div class="mt-10 lg:mt-0">
-                <span class="block mb-0 text-lg font-semibold text-gray-200 text-primary">
+                <span class="block mb-0 text-lg font-bold text-gray-800 text-primary">
                   Why Choose Us
                 </span>
                 <AnimatedText
                   text="Make your customers happy by giving services."
-                  classN=" w-full bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-transparent text-3xl sm:text-4xl mb-4 py-2"
+                  classN=" w-full  text-[#A16207] font-bold  text-3xl sm:text-4xl mb-4 py-2"
                 />
-                <p class="  mb-2 mt-6 text-base text-gray-300 dark:text-dark-6">
+                <p class="  mb-2 mt-6 text-base font-semibold text-gray-800 dark:text-dark-6">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less.
                 </p>
-                <p class="hidden lg:block  mb-8 text-base text-gray-300 dark:text-dark-6">
+                <p class="hidden lg:block  mb-8 text-base font-semibold text-gray-800 dark:text-dark-6">
                   A domain name is one of the first steps to establishing your
                   brand. Secure a consistent brand image with a domain name that
                   matches your business.

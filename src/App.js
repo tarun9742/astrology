@@ -14,6 +14,7 @@ import Contact from "./Pages/Contact";
 import { useEffect } from "react";
 import Horscope from "./Pages/Horscope";
 import HoroscopeDetail from "./Pages/HoroscopeDetail";
+import bg1 from "./Data/images/bg-yellow1.png"
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -27,7 +28,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <div className="bg-black">
+    <div className="bg-fixed bg-cover" style={{backgroundImage:`url(${bg1})`}}>
       <div class="fixed bottom-4 left-4 z-[99999]">
         <a
           href="https://wa.me/your-number"
